@@ -51,7 +51,7 @@ export default {
             }
 
             const reg = await models.User.updateOne({ _id: req.body._id }, {
-                fullName: req.body.name,
+                fullName: req.body.fullName,
                 role: req.body.role,
                 cellPhoneNumber: req.body.cellPhoneNumber,
                 email: req.body.email,
