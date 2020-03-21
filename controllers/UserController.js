@@ -1,10 +1,14 @@
 import models from "../models";
 import bcrypt from "bcryptjs";
 import token from "../services/token";
+const { validationResult } = require("express-validator");
 
 export default {
     add: async (req, res, next) => {
-
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         try {
             let user = await models.User.findOne({ email: req.body.email });
             if (user) {
@@ -60,7 +64,10 @@ export default {
     },
 
     update: async (req, res, next) => {
-
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         try {
             let existUser = await models.User.findOne({ email: req.body.email });
             const getId = req.params.id;
@@ -108,6 +115,10 @@ export default {
         }
     },
     login: async (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         try {
             let user = await models.User.findOne({ email: req.body.email });
             if (user) {
