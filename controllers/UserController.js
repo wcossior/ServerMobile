@@ -246,7 +246,6 @@ export default {
                 let match = await bcrypt.compare(req.body.password, user.password);
                 if (match) {
                     let tokenReturn = await token.encode(user._id);
-                    // res.status(200).json({ user, tokenReturn });
                     res.status(200).json({
                         response: {
                             status: "ok",
