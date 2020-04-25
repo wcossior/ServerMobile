@@ -204,7 +204,6 @@ export default {
         const getId = req.params.id;
         try {
             const reg = await models.User.findByIdAndDelete({ _id: getId });
-            // res.status(200).json(reg);
             res.status(200).json({
                 response: {
                     status: "ok",
