@@ -215,9 +215,7 @@ export default {
                 }
             });
         } catch (e) {
-            // res.status(500).send({
-            //     msg: "Ocurrio un error"
-            // });
+        
             res.status(500).send({
                 response: {
                     status: "error",
