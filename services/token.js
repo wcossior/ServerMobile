@@ -9,7 +9,7 @@ async function checkToken(token) {
     } catch (e) {
         return false;
     }
-    const user = await models.User.findOne({ _id: __id, state: 1 });
+    const user = await models.User.findOne({ _id: __id });
     if (user) {
         const token = jwt.sign({ _id: __id }, "clavesecretaparagenerareltoken", { expiresIn: "1d" });
         return { token, role: user.role };
@@ -26,7 +26,7 @@ export default {
     decode: async (token) => {
         try {
             const { _id } = await jwt.verify(token, "clavesecretaparagenerareltoken");
-            const user = await models.User.findOne({ _id, state: 1 });
+            const user = await models.User.findOne({ _id});
             if (user) {
                 return user;
             } else {

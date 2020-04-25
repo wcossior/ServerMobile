@@ -24,6 +24,7 @@ export default {
             });
         }
         const response = await tokenService.decode(req.headers.token);
+        console.log(response);
         if (response.role == "Administrador") {
             next();
         } else {
